@@ -16,9 +16,12 @@ def smallrandom(start,stop,step):
         yield start
         start+=step
 
-gambles = OrderedDict([(f,gamble(capital=1,f=f,flips=1000)) for f in 
-            smallrandom(0,1,0.01)])
+gambles = [OrderedDict([(f,gamble(capital=1,f=f,flips=1000)) for f in 
+            smallrandom(0,1,0.01)]) for i in range(1000)]
 
-f,capital = max(gambles.items(),key = lambda x:x[1])
-print(f,capital)
-print(gamble())
+for set_gambles in gambles:
+    print(max(set_gambles.items(),key = lambda x:x[1]))
+
+
+
+
