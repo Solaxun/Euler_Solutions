@@ -1,16 +1,22 @@
-x = 600851475143
-# 
+def isprime(num):
+    prime=True
+    init_divisor=num-1
+    while init_divisor>1:
+        if num%init_divisor == 0:
+            prime=False
+            break
+        init_divisor-=1
+    return num if prime else False
 
-def eratosthenes(num):
-    sieve=[True]*int(num)
-    for i,val in enumerate(sieve):
-        if i==2:
-            sieve[::i]=[False for i in range(int(num/2))]
-    return sieve
+def prime_factors(num):
+    factors=[]
+    num=num
+    while num>1:
+        for i in range(2,int(num+1)):
+            if num%i==0:
+                factors.append(i)
+                num/=i
+                break
+    return max(map(isprime,factors))
 
-
-print(eratosthenes(20))
-
-
-
-
+print(prime_factors(600851475143))
